@@ -265,7 +265,7 @@ def main():
     )
     
     # Process all PDFs in a folder
-    folder = "/home/biomedialab/Desktop/Sandeep/Placements/Projects/rag4finance/data"  # Update this path
+    folder = "./data"  # Update this path
     monthly_data = chunker.parse_all_pdfs_by_month(folder)
     
     # Get statistics

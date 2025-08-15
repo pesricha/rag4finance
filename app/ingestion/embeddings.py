@@ -6,9 +6,8 @@ from dotenv import load_dotenv
 load_dotenv('./.env') 
 
 # === 1. Paths & PDF parsing ===
-root_dir = "/home/biomedialab/Desktop/Sandeep/Placements/Projects/rag4finance"
 chunker = PDFChunker()
-data_chunks = chunker.parse_all_pdfs_by_month(f"{root_dir}/data")
+data_chunks = chunker.parse_all_pdfs_by_month(f"./data")
 
 print(f"📄 Parsed {len(data_chunks)} chunks from PDFs")
 
