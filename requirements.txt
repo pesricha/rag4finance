@@ -9,3 +9,7 @@ requests>=2.31.0
 
 # Utils
 tiktoken==0.11.0
+
+#langchain
+langchain>=0.3.27
+langchain-community>=0.3.27

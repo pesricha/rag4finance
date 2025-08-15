@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from collections import deque
+from app.chains.rag_chain import get_ollama_response
 
 app = FastAPI(title="RAG4Finance Chat Backend")
 
@@ -29,8 +30,8 @@ def chat_endpoint(msg: ChatMessage):
     # Store user message
     chat_history.append({"role": "user", "content": msg.message})
 
-    # [TODO] Placeholder bot logic (replace with RAG later)
-    bot_reply = f"Echo: {msg.message}"
+    # Get response from Ollama
+    bot_reply = get_ollama_response(user_query=msg.message, chat_history=list(chat_history))
     chat_history.append({"role": "assistant", "content": bot_reply})
 
     return {"reply": bot_reply, "history": list(chat_history)}
