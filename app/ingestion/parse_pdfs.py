@@ -255,68 +255,56 @@ class PDFChunker:
             "months_covered": sorted(months)
         }
 
-# # Example usage and utility functions
-# def main():
-#     """Example usage of the PDFChunker class."""
-#     # Initialize chunker with your desired parameters
-#     chunker = PDFChunker(
-#         chunk_size=350,    # Target 350 tokens per chunk
-#         overlap=75,        # 75 token overlap between chunks
-#     )
+# Example usage and utility functions
+def main():
+    """Example usage of the PDFChunker class."""
+    # Initialize chunker with your desired parameters
+    chunker = PDFChunker(
+        chunk_size=350,    # Target 350 tokens per chunk
+        overlap=75,        # 75 token overlap between chunks
+    )
     
-#     # Process all PDFs in a folder
-#     folder = "/home/biomedialab/Desktop/Sandeep/Placements/Projects/rag4finance/data"  # Update this path
-#     monthly_data = chunker.parse_all_pdfs_by_month(folder)
+    # Process all PDFs in a folder
+    folder = "/home/biomedialab/Desktop/Sandeep/Placements/Projects/rag4finance/data"  # Update this path
+    monthly_data = chunker.parse_all_pdfs_by_month(folder)
     
-#     # Get statistics
-#     stats = chunker.get_chunk_statistics(monthly_data)
+    # Get statistics
+    stats = chunker.get_chunk_statistics(monthly_data)
 
-#     print(f"type(monthly_data): {type(monthly_data)}")
-#     print(f"first chunk: {monthly_data[-1]}")
+    print(f"type(monthly_data): {type(monthly_data)}")
+    print(f"first chunk: {monthly_data[-1]}")
     
-#     print(f"\n📊 Processing Statistics:")
-#     print(f"Total chunks: {stats.get('total_chunks', 0)}")
-#     print(f"Average tokens per chunk: {stats.get('avg_tokens_per_chunk', 0):.1f}")
-#     print(f"Token range: {stats.get('min_tokens', 0)}-{stats.get('max_tokens', 0)}")
-#     print(f"Total tokens: {stats.get('total_tokens', 0):,}")
-#     print(f"Months covered: {len(stats.get('months_covered', []))}")
+    print(f"\n📊 Processing Statistics:")
+    print(f"Total chunks: {stats.get('total_chunks', 0)}")
+    print(f"Average tokens per chunk: {stats.get('avg_tokens_per_chunk', 0):.1f}")
+    print(f"Token range: {stats.get('min_tokens', 0)}-{stats.get('max_tokens', 0)}")
+    print(f"Total tokens: {stats.get('total_tokens', 0):,}")
+    print(f"Months covered: {len(stats.get('months_covered', []))}")
     
-#     # Group chunks by month for analysis
-#     chunks_by_month = {}
-#     for chunk in monthly_data:
-#         month = chunk['month']
-#         if month not in chunks_by_month:
-#             chunks_by_month[month] = []
-#         chunks_by_month[month].append(chunk)
+    # Group chunks by month for analysis
+    chunks_by_month = {}
+    for chunk in monthly_data:
+        month = chunk['month']
+        if month not in chunks_by_month:
+            chunks_by_month[month] = []
+        chunks_by_month[month].append(chunk)
     
-#     print(f"\n📅 Chunks per month:")
-#     for month, chunks in sorted(chunks_by_month.items()):
-#         total_tokens = sum(c['token_count'] for c in chunks)
-#         print(f"  {month}: {len(chunks)} chunks, {total_tokens} tokens")
+    print(f"\n📅 Chunks per month:")
+    for month, chunks in sorted(chunks_by_month.items()):
+        total_tokens = sum(c['token_count'] for c in chunks)
+        print(f"  {month}: {len(chunks)} chunks, {total_tokens} tokens")
     
-#     # Example: Print first chunk from each month
-#     print(f"\n📝 Sample chunks (first chunk from each month):")
-#     seen_months = set()
-#     for chunk in monthly_data:
-#         if chunk['month'] not in seen_months:
-#             seen_months.add(chunk['month'])
-#             print(f"\n{chunk['month']} (Chunk {chunk['chunk_index'] + 1}):")
-#             print(f"Tokens: {chunk['token_count']}")
-#             print(f"Text preview: {chunk['text'][:150]}...")
-#             if len(seen_months) >= 3:  # Show max 3 examples
-#                 break
+    # Example: Print first chunk from each month
+    print(f"\n📝 Sample chunks (first chunk from each month):")
+    seen_months = set()
+    for chunk in monthly_data:
+        if chunk['month'] not in seen_months:
+            seen_months.add(chunk['month'])
+            print(f"\n{chunk['month']} (Chunk {chunk['chunk_index'] + 1}):")
+            print(f"Tokens: {chunk['token_count']}")
+            print(f"Text preview: {chunk['text'][:150]}...")
+            if len(seen_months) >= 3:  # Show max 3 examples
+                break
 
-# if __name__ == "__main__":
-#     main()
-# # Simple usage example
-# def simple_example():
-#     """Simple example for quick testing."""
-#     chunker = PDFChunker(chunk_size=350, overlap=75)
-    
-#     # Process a single file
-#     # chunks = chunker.process_single_pdf("path/to/your/file.pdf")
-    
-#     # Or process all PDFs in a folder
-#     # chunks = chunker.parse_all_pdfs_by_month("path/to/folder")
-    
-#     pass
+if __name__ == "__main__":
+    main()
