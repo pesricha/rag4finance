@@ -6,3 +6,6 @@ pydantic>=2.7.0
 # Frontend
 streamlit>=1.36.0
 requests>=2.31.0
+
+# Utils
+tiktoken==0.11.0
