@@ -140,7 +140,7 @@ Write a clear, natural, and helpful final response to the user.
                 f"User: {msg.content}"
                 if isinstance(msg, HumanMessage)
                 else f"Assistant: {msg.content}"
-                for msg in self._history[-self.max_chat_history :]
+                for msg in self._history[-self.max_chat_history:]
             ]
         )
 
