@@ -14,7 +14,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+bot_obj = SmartChatAgent(
+    model_name="qwen:1.8b", temperature=0.8, max_chat_history=10, max_plan_steps=2
+)
 # Keep only last 20 messages (10 exchanges)
 chat_history = deque(maxlen=20)
 
@@ -35,9 +37,7 @@ def chat_endpoint(msg: ChatMessage):
 
     # Get response from SmartChatAgent
     # TODO: Make User configurable p3
-    bot_obj = SmartChatAgent(
-        model_name="qwen:1.8b", temperature=0.8, max_chat_history=4, max_plan_steps=4
-    )
+
     bot_reply = bot_obj.answer_user_query(question=msg.message)
     chat_history.append({"role": "assistant", "content": bot_reply})
 
