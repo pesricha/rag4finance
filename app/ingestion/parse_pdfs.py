@@ -265,7 +265,7 @@ def main():
     )
     
     # Process all PDFs in a folder
-    folder = "/home/biomedialab/Desktop/Sandeep/Placements/Projects/rag4finance/data"  # Update this path
+    folder = "./data"  # Update this path
     monthly_data = chunker.parse_all_pdfs_by_month(folder)
     
     # Get statistics
@@ -300,7 +300,6 @@ def main():
     for chunk in monthly_data:
         if chunk['month'] not in seen_months:
             seen_months.add(chunk['month'])
-            print(f"\n{chunk['month']} (Chunk {chunk['chunk_index'] + 1}):")
             print(f"Tokens: {chunk['token_count']}")
             print(f"Text preview: {chunk['text'][:150]}...")
             if len(seen_months) >= 3:  # Show max 3 examples
