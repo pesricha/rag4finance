@@ -20,7 +20,7 @@ model = SentenceTransformer("all-distilroberta-v1")
 print("🔌 Connecting to Elasticsearch...")
 es = Elasticsearch(
     "https://localhost:9200",
-    basic_auth=("elastic", "z-3n8-w7USNszckT7af*"),
+    basic_auth=("elastic", os.getenv("ELASTIC_PASSWORD")),
     verify_certs=False  # for local dev only
 )
 
